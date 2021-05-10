@@ -125,15 +125,16 @@ static void gameloop(){
 
 static bool onKeyPress(GdkEventKey* event){
     switch(event->hardware_keycode){
-	case 24:{
-		gamerunning = false;
-		((Gtk::Application*)Happ)->quit();
-		break;
-	}
-	case 9:{
-		gamerunning = false;
-		((Gtk::Application*)Happ)->quit();
-		break;                                                                                   }
+		case 24:{
+			gamerunning = false;
+			((Gtk::Application*)Happ)->quit();
+			break;
+		}
+		case 9:{
+			gamerunning = false;
+			((Gtk::Application*)Happ)->quit();
+			break;
+		}
 	}
     return true;
 }
