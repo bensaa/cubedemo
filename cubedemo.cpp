@@ -13,9 +13,9 @@ int iterations = 0;
 int fps = 0;
 bool gamerunning = true;
 
-bool comparecubes(cube* cp1, cube* cp2) { 
-    return (cp1->locz > cp2->locz); 
-} 
+bool comparecubes(cube* cp1, cube* cp2) {
+    return (cp1->locz > cp2->locz);
+}
 static void initplaces(){
     for(int i = 0; i < CUBECOUNT;i++){
         for(int i2 = 0; i2 < 8;i2++){
@@ -27,7 +27,7 @@ static void initplaces(){
     }
 }
 static void calcplace(){
-	
+
     for(int i = CUBECOUNT-1; i >= 0;i--){
         int i2 = 0;
         for(; i2 < 8;i2++){
@@ -44,9 +44,9 @@ static void calcplace(){
                     P2->dy = order[i]->locy + P2->sy;
                     P2->dz = order[i]->locz + P2->sz;
 		        }
-				
+
 				cube* tmp_cube = order[i];
-				
+
 				for(int i3 = CUBECOUNT - 1; i3 > 0;i3--){
 					order[i3] = order[i3-1];
 				}
@@ -75,10 +75,10 @@ public:
         for(int j = 0; j < CUBECOUNT;j++){
 			for(int i = 0; i < 12;i++){
 				kolmio* KP = &(order[j]->kolmiot[i]);
-				float P1x = KP->points[2]->fx - KP->points[0]->fx; 
-				float P1y = KP->points[2]->fy - KP->points[0]->fy; 
-				float P2x = KP->points[1]->fx - KP->points[0]->fx; 
-				float P2y = KP->points[1]->fy - KP->points[0]->fy; 
+				float P1x = KP->points[2]->fx - KP->points[0]->fx;
+				float P1y = KP->points[2]->fy - KP->points[0]->fy;
+				float P2x = KP->points[1]->fx - KP->points[0]->fx;
+				float P2y = KP->points[1]->fy - KP->points[0]->fy;
 				float value = P1x*P2y - P1y*P2x;
 				if(value > 0){
 					cr->set_source_rgb(255, 0, 0);
@@ -92,12 +92,12 @@ public:
 				}
             }
         }
-        
+
         std::string s = ("FPS: " + std::to_string(fps));
         auto layout = create_pango_layout(s);
         cr->move_to(25, 25);
         layout->show_in_cairo_context(cr);
-		
+
         return true;
     };
     bool on_timeout(){
@@ -159,4 +159,3 @@ int main(int argc, char** argv){
     std::thread t(gameloop);
     return app->run(win);
 }
-
